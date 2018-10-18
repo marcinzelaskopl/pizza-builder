@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Title from "./components/Title";
+import Size from "./components/Size";
+import FixedPrice from "./components/FixedPrice";
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+        totalPrice: 0,
+        sizePrice: '',
+    }
+  }
+  onClick = (e) => {
+    this.setState ({
+        totalPrice: e.target.value,
+    })
+  };
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="main grid-container">
+        <div className={'row'}>
+          <div className={'col-2'}>
+          </div>
+          <div className={'col-10'}>
+            <Title/>
+            <Size onClick={this.onClick}/>
+            <FixedPrice totalPrice={this.state.totalPrice}/>
+          </div>
+          <div className={'col-2'}>
+          </div>
+        </div>
       </div>
     );
   }
